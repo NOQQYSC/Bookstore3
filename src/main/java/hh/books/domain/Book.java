@@ -24,12 +24,12 @@ public class Book {
 		this.price = price;
 	}
 	public Book() {
-		super();
-		this.title = null;
-		this.author = null;
-		this.isbn = null;
-		this.price = 0.00;
 	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -41,6 +41,11 @@ public class Book {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	
+	public Long getId() {
+		return id;
 	}
 	public String getTitle() {
 		return title;
