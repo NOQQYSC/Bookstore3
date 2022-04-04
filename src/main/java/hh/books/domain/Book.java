@@ -1,9 +1,13 @@
 package hh.books.domain;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Book {
@@ -16,12 +20,18 @@ public class Book {
 	private String isbn;
 	private Double price;
 	
-	public Book(String title, String author, String isbn, Double price) {
+	@ManyToOne
+	@JsonIgnoreProperties ("books")
+	@JoinColumn(name = "categoryid")
+	private Category category;
+	
+	public Book(String title, String author, String isbn, Double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 	public Book() {
 	}
@@ -42,6 +52,9 @@ public class Book {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	
 	
 	public Long getId() {
@@ -59,6 +72,10 @@ public class Book {
 	public Double getPrice() {
 		return price;
 	}
+	public Category getCategory() {
+		return category;
+	}
+	
 	@Override
 	public String toString() {
 		return "Book [title=" + title + ", author=" + author + ", isbn=" + isbn + ", price=" + price + "]";
